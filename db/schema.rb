@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180901201306) do
+ActiveRecord::Schema.define(version: 20180901202234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 20180901201306) do
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.bigint "articles_id"
-    t.bigint "tags_id"
-    t.index ["articles_id"], name: "index_taggings_on_articles_id"
-    t.index ["tags_id"], name: "index_taggings_on_tags_id"
+    t.bigint "tag_id"
+    t.bigint "article_id"
+    t.index ["article_id"], name: "index_taggings_on_article_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -43,6 +43,6 @@ ActiveRecord::Schema.define(version: 20180901201306) do
   end
 
   add_foreign_key "comments", "articles"
-  add_foreign_key "taggings", "articles", column: "articles_id"
-  add_foreign_key "taggings", "tags", column: "tags_id"
+  add_foreign_key "taggings", "articles"
+  add_foreign_key "taggings", "tags"
 end
