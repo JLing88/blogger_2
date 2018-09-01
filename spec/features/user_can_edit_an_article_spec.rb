@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'user edits an article' do
   describe 'they link from an article show page' do
-    describe 'they edit title and body' do
+    describe 'they fill in the title and body' do
       it 'shows the edited article' do
         article = Article.create!(title: "Title", body: "Body")
 
@@ -15,6 +15,7 @@ describe 'user edits an article' do
 
         expect(page).to have_content("New Title")
         expect(page).to have_content("New Body")
+        expect(page).to have_content("Article was updated.")
       end
     end
   end
