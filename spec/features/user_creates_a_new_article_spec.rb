@@ -10,10 +10,13 @@ describe 'user creates a new article' do
 
         fill_in "article[title]", with: "New Title"
         fill_in "article[body]", with: "New Body"
+        fill_in :article_tag_list, with: "ruby, technology"
         click_on("Create Article")
-         
+
         expect(page).to have_content("New Title")
         expect(page).to have_content("New Body")
+        expect(page).to have_content("ruby")
+        expect(page).to have_content("technology")
       end
     end
   end
